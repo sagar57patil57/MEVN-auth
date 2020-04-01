@@ -52,17 +52,7 @@ export default {
             email: this.email,
             password: this.password
         }
-        try{
-              let res = await UserService.signinUser(user)
-              
-              const token_recieved = res.headers.xauthtoken
-              this.$store.state.tokenId = token_recieved
-              localStorage.setItem('xauthtoken', token_recieved)
-                router.replace('/me')
-          } catch(err) {
-              this.error = 'Wrong data'
-              console.log(err)
-          }
+        this.$store.dispatch('signinUser', user)
     }
   }
 }

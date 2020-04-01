@@ -54,25 +54,14 @@ export default {
         }
     },
   methods: {
-      async handleSignup() {
+      handleSignup() {
           let user = {
               name: this.name,
               email: this.email,
               password: this.password
           }
           console.log(user)
-          try{
-              let res = await UserService.signupUser(user)
-              
-              const token_recieved = res.headers.xauthtoken
-              this.$store.state.tokenId = token_recieved
-              localStorage.setItem('xauthtoken', token_recieved)
-              router.replace('/me')
-              //console.log("token",this.$store.state.token)
-          } catch(err) {
-              this.error = 'Invalid data'
-              console.log(err)
-          }
+          this.$store.dispatch('signupUser', user)
       }
   }
 }
