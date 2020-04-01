@@ -14,9 +14,12 @@ router.get('/me', auth, async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log("req for signin")
+  //console.log("req for signin")
   const { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    //console.log("Error", error)
+    return res.status(400).send(error.details[0].message);
+  }
 
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send({message: 'User already registered.'});
@@ -28,7 +31,7 @@ router.post('/', async (req, res) => {
 
   const token = user.generateAuthToken();
   const obj = _.pick(user, ['_id', 'name', 'email'])
-  console.log("obj", obj)
+  //console.log("obj", obj)
   res.header('xauthtoken', token).send({token, obj});
 });
 

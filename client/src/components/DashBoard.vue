@@ -18,12 +18,12 @@ export default {
 
   async created() {
       try{
-          let res = await UserService.getMe()
-          console.log(res)
-          this.$store.state.user = res
-          this.name = res.name
-          this.email = res.email
-          this.$store.state.tokenId = localStorage.getItem('xauthtoken')
+          //let res = await UserService.getMe()
+          //console.log(res)
+          //this.$store.state.user = res
+          this.name = this.$store.state.user.name
+          this.email = this.$store.state.user.email
+          //this.$store.state.tokenId = localStorage.getItem('xauthtoken')
       } catch(err) {
           console.log(err)
       }

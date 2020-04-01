@@ -14,14 +14,6 @@ class PostService {
         })
     }
 
-    static signupUser(data) {
-        return axios.post(url + '/users', data)
-    }
-
-    static signinUser(data) {
-        return axios.post(url + '/auth', data)
-    }
-
 }
 
 export default PostService
